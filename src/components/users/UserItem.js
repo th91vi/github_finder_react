@@ -1,26 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-class UserItem extends Component {
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         id: 'id',
-    //         login: 'octocat',
-    //         avatar_url: 'https://avatars1.githubusercontent.com/u/583231?s=400&v=4',
-    //         html_url: 'https://github.com/octocat'
-    //     }
-    // }
-    // state = {
-    //     id: 'id',
-    //     login: 'octocat',
-    //     avatar_url: 'https://avatars1.githubusercontent.com/u/583231?s=400&v=4',
-    //     html_url: 'https://github.com/octocat'
-    // };
+// class UserItem extends Component {
+const UserItem = ({ userProp: { login, avatar_url, html_url }}) => { // Aqui estamos fazendo destructuring da prop user, vimda de Users
 
-    render() {
-
-        // const { login, avatar_url, html_url } = this.state;
-        const { login, avatar_url, html_url } = this.props.user;
+        // const { login, avatar_url, html_url } = this.props.user;
+        // const { login, avatar_url, html_url } = props.user;
 
         return (
             <div className='card text-center'>
@@ -33,7 +18,11 @@ class UserItem extends Component {
 
             </div>
         )
-    }
+}
+
+// Definindo o tupo da prop passada
+UserItem.propTypes = {
+    userProp: PropTypes.object.isRequired,
 }
 
 export default UserItem;
