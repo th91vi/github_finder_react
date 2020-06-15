@@ -1,11 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// class UserItem extends Component {
 const UserItem = ({ userProp: { login, avatar_url, html_url }}) => { // Aqui estamos fazendo destructuring da prop user, vimda de Users
-
-        // const { login, avatar_url, html_url } = this.props.user;
-        // const { login, avatar_url, html_url } = props.user;
 
         return (
             <div className='card text-center'>
