@@ -12,7 +12,7 @@ class App extends Component {
     async componentDidMount() {
         this.setState({ loading: true })
 
-        const usersResponse = await fetch('https://api.github.com/users')
+        const usersResponse = await fetch(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
         const usersResult = await usersResponse.json();
 
         this.setState({ users: usersResult, loading: false })
