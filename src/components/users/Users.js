@@ -1,38 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import UserItem from './UserItem'
+import Spinner from '../layout/Spinner'
+import PropTypes from 'prop-types'
 
-class Users extends Component {
-    // state = {
-    //     users: [
-    //         {
-    //             id: '1',
-    //             login: 'mojombo',
-    //             avatar_url: 'https://avatars1.githubusercontent.com/u/1?s=400&v=4',
-    //             html_url: 'https://github.com/mojombo'
-    //         },
-    //         {
-    //             id: '2',
-    //             login: 'defunkt',
-    //             avatar_url: 'https://avatars1.githubusercontent.com/u/2?s=400&v=4',
-    //             html_url: 'https://github.com/defunkt'
-    //         },
-    //         {
-    //             id: '3',
-    //             login: 'pjhyeet',
-    //             avatar_url: 'https://avatars1.githubusercontent.com/u/3?s=400&v=4',
-    //             html_url: 'https://github.com/pjhyeet'
-    //         },
-    //     ]
-    // }
-    render() {
+// class Users extends Component {
+const Users = ({ users, loading }) => {
+    if (loading) {
+        return <Spinner />
+    } else {
+    // {
+    // render() {
         return (
             <div style={userStyle}>
-                {this.props.users.map(user => (
+                {users.map(user => (
                     <UserItem key={user.id} userProp={user}/>
                 ))}
             </div>
         )
+//     }
+// }
     }
+}
+
+Users.propTypes = {
+    users: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
 }
 
 const userStyle = {

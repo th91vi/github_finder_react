@@ -8,9 +8,9 @@ const UserItem = ({ userProp: { login, avatar_url, html_url }}) => { // Aqui est
                 <img src={avatar_url} className='round-img' style={{ width: "60px" }} alt={login} />
                 <h3>{login}</h3>
 
-            <div>
-                <a href={html_url} className='btn btn-dark btn-sm my-1'>View profile</a>
-            </div>
+                <div>
+                    <a href={html_url} className='btn btn-dark btn-sm my-1'>View profile</a>
+                </div>
 
             </div>
         )
