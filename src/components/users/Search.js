@@ -17,7 +17,6 @@ export class Search extends Component {
         e.preventDefault();
         if (this.state.text === '') {
             this.props.setAlert('Please insert a username', 'light');
-            // alert('Please insert a username')
         } else {
             this.props.searchUsers(this.state.text);
             this.setState({ text: '' });
