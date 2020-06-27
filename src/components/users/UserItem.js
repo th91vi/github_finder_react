@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-const UserItem = ({ userProp: { login, avatar_url, html_url }}) => { // Aqui estamos fazendo destructuring da prop user, vimda de Users
+const UserItem = ({ userProp: { login, avatar_url }}) => { // Aqui estamos fazendo destructuring da prop user, vinda de Users
 
         return (
             <div className='card text-center'>
@@ -9,7 +10,8 @@ const UserItem = ({ userProp: { login, avatar_url, html_url }}) => { // Aqui est
                 <h3>{login}</h3>
 
                 <div>
-                    <a href={html_url} className='btn btn-dark btn-sm my-1'>View profile</a>
+                    <Link to={`/user/${login}`} className='btn btn-dark btn-sm my-1'>View profile</Link>
+                    {/* <a href={html_url} className='btn btn-dark btn-sm my-1'>View profile</a> */}
                 </div>
 
             </div>
