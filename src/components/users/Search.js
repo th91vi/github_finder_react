@@ -10,12 +10,14 @@ export class Search extends Component {
         searchUsers: PropTypes.func.isRequired,
         clearUsers: PropTypes.func.isRequired,
         showClear: PropTypes.bool.isRequired,
+        setAlert: PropTypes.func.isRequired,
     }
 
     onSubmit = (e) => {
         e.preventDefault();
         if (this.state.text === '') {
-            alert('Please insert a username')
+            this.props.setAlert('Please insert a username', 'light');
+            // alert('Please insert a username')
         } else {
             this.props.searchUsers(this.state.text);
             this.setState({ text: '' });
