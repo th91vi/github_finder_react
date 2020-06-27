@@ -3,13 +3,10 @@ import UserItem from './UserItem'
 import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
 
-// class Users extends Component {
 const Users = ({ users, loading }) => {
     if (loading) {
         return <Spinner />
     } else {
-    // {
-    // render() {
         return (
             <div style={userStyle}>
                 {users.map(user => (
@@ -17,8 +14,6 @@ const Users = ({ users, loading }) => {
                 ))}
             </div>
         )
-//     }
-// }
     }
 }
 
