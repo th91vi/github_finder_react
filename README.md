@@ -2,4 +2,4 @@
 
 Repositório educaional para o curso [React Front to Back](https://www.udemy.com/share/101XdqBUQbdlhWTHo=/), ministrado na Udemy por [Brad Traversy](https://www.traversymedia.com/).
 
-Versão feita usando componentes como classes. A próxima versão será refatorada utilizando componentes funcionais.
+Neste ponto estamos convertendo os componentes de calsses para componente funcionais. A seguir também começaremos a utilizar context e reducers.
