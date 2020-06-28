@@ -1,26 +1,19 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Spinner from '../layout/Spinner'
 import Repos from '../repos/Repos'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-export class User extends Component {
-    componentDidMount() {
-        this.props.getSingleUser(this.props.match.params.login);
-        this.props.getUserRepos(this.props.match.params.login);
-    }
 
-    static propTypes = {
-        loading: PropTypes.bool,
-        user: PropTypes.object.isRequired,
-        repos: PropTypes.array.isRequired,
-        getSingleUser: PropTypes.func.isRequired,
-        getUserRepos: PropTypes.func.isRequired,
-    }
+const User = ({ user, loading, getSingleUser, getUserRepos, repos, match }) => {
+    useEffect(() => {
+        getSingleUser(match.params.login);
+        getUserRepos(match.params.login);
+        //eslint-disable-next-line
+    }, [])  // Aqui estamos usando colchetes vazios para que useEffect seja rodado uma única vez, simulando componentDidMount.
+            // Sem essa configuração ele iria rodar em loop infinito, a cada atualização do componente
+            // O comentário de eslint acima serve para que não recebamos mensagem no console sobre falta dependências em useEffect
 
-    render() {
-        const {name, avatar_url, location, bio, blog, login, html_url, followers, following, public_repos, public_gists, company, hirable} = this.props.user;
-
-        const { loading, repos } = this.props;
+        const {name, avatar_url, location, bio, blog, login, html_url, followers, following, public_repos, public_gists, company, hirable} = user;
 
         if (loading === true) return <Spinner />
 
@@ -80,7 +73,14 @@ export class User extends Component {
 
             </Fragment>
         )
-    }
+}
+
+User.propTypes = {
+    loading: PropTypes.bool,
+    user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
+    getSingleUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
 }
 
 export default User

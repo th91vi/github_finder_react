@@ -2,37 +2,18 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
-// export class Search extends Component {
-    // state = {
-    //     text: ''
-    // };
     const [text, setText] = useState('');
 
-    // static propTypes = {
-    //     searchUsers: PropTypes.func.isRequired,
-    //     clearUsers: PropTypes.func.isRequired,
-    //     showClear: PropTypes.bool.isRequired,
-    //     setAlert: PropTypes.func.isRequired,
-    // }
-
-    // onSubmit = (e) => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
             setAlert('Please insert a username', 'light');
         } else {
             searchUsers(text);
-            // this.setState({ text: '' });
             setText('');
         }
     }
-
-    // onChange = e => this.setState({ [e.target.name]: e.target.value })
-    // const onChange = (e) => this.setState({ [e.target.name]: e.target.value })
     const onChange = (e) => setText( e.target.value )
-
-    // render() {
-        // const { showClear, clearUsers } = this.props;
 
         return (
             <div>
@@ -45,7 +26,6 @@ const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => { // Aqui e
                 )}
             </div>
         )
-    // }
 }
 
 Search.propTypes = {
