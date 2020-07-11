@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import PropTypes from 'prop-types';
+import GitHubContext from '../../context/github/githubContext'
 
-const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
+const Search = ({ clearUsers, showClear, setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
+    const githubContext = useContext(GitHubContext)
+    
     const [text, setText] = useState('');
 
     const onSubmit = (e) => {
@@ -9,7 +12,7 @@ const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => { // Aqui e
         if (text === '') {
             setAlert('Please insert a username', 'light');
         } else {
-            searchUsers(text);
+            githubContext.searchUsers(text);
             setText('');
         }
     }
@@ -29,7 +32,6 @@ const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => { // Aqui e
 }
 
 Search.propTypes = {
-    searchUsers: PropTypes.func.isRequired,
     clearUsers: PropTypes.func.isRequired,
     showClear: PropTypes.bool.isRequired,
     setAlert: PropTypes.func.isRequired,
