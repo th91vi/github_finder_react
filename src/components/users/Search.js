@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import PropTypes from 'prop-types';
 import GitHubContext from '../../context/github/githubContext'
 
-const Search = ({ clearUsers, showClear, setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
+const Search = ({ setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
     const githubContext = useContext(GitHubContext)
     
     const [text, setText] = useState('');
@@ -24,16 +24,14 @@ const Search = ({ clearUsers, showClear, setAlert }) => { // Aqui estamos fazend
                     <input type='text' name='text' placeholder='Search users...' value={text} onChange={onChange} />
                     <input type='submit' value='Search' className='btn btn-dark btn-block' />
                 </form>
-                {showClear && (
-                    <button className='btn btn-light btn-block' onClick={clearUsers}>Clear</button>
+                {githubContext.users.length > 0 && (
+                    <button className='btn btn-light btn-block' onClick={githubContext.clearUsers}>Clear</button>
                 )}
             </div>
         )
 }
 
 Search.propTypes = {
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
     setAlert: PropTypes.func.isRequired,
 }
 

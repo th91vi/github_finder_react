@@ -12,21 +12,9 @@ import GithubState from './context/github/GithubState';
 import './App.css';
 
 const App = () => {
-    const [users, setUsers] = useState([]);
-    const [user, setUser] = useState({});
     const [repos, setRepos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState(null);
-
-    const getSingleUser = async (login) => {
-        setLoading(true);
-
-        const userResponse = await fetch(`https://api.github.com/users/${login}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
-        const userResult = await userResponse.json();
-
-        setUser(userResult);
-        setLoading(false);
-    }
 
     const getUserRepos = async (login) => {
         setLoading(true);
@@ -35,11 +23,6 @@ const App = () => {
         const userResult = await userResponse.json();
 
         setRepos(userResult);
-        setLoading(false);
-    }
-
-    const clearUsers = () => {
-        setUsers([]);
         setLoading(false);
     }
 
@@ -60,11 +43,9 @@ const App = () => {
                             <Route exact path='/' render={ props => (
                                 <Fragment>
                                     <Search
-                                        clearUsers={clearUsers}
-                                        showClear={users.length > 0 ? true : false}
                                         setAlert={showAlert}
                                     />
-                                    <Users loading={loading} users={users} />
+                                    <Users />
                                 </Fragment>
                             )} />
 
@@ -73,11 +54,8 @@ const App = () => {
                             <Route exact path='/user/:login' render={ props => (
                                 <User
                                     { ...props}
-                                    getSingleUser={getSingleUser}
                                     getUserRepos={getUserRepos}
-                                    user={user}
                                     repos={repos}
-                                    loading={loading}
                                 />
                             )} />
                         </Switch>
