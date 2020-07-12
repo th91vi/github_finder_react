@@ -1,16 +1,17 @@
 import React, {useState, useContext} from 'react';
-import PropTypes from 'prop-types';
 import GitHubContext from '../../context/github/githubContext'
+import AlertContext from '../../context/alert/alertContext'
 
-const Search = ({ setAlert }) => { // Aqui estamos fazendo destructuring das props, definidas em App
+const Search = () => { // Aqui estamos fazendo destructuring das props, definidas em App
     const githubContext = useContext(GitHubContext)
+    const alertContext = useContext(AlertContext)
     
     const [text, setText] = useState('');
 
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
-            setAlert('Please insert a username', 'light');
+            alertContext.setAlert('Please insert a username', 'light');
         } else {
             githubContext.searchUsers(text);
             setText('');
@@ -29,10 +30,6 @@ const Search = ({ setAlert }) => { // Aqui estamos fazendo destructuring das pro
                 )}
             </div>
         )
-}
-
-Search.propTypes = {
-    setAlert: PropTypes.func.isRequired,
 }
 
 export default Search;
