@@ -46,6 +46,17 @@ const GithubState = (props) => {
     }
 
     // Get Repos
+    const getUserRepos = async (login) => {
+        setLoading(true);
+
+        const userResponse = await fetch(`https://api.github.com/users/${login}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
+        const userResult = await userResponse.json();
+
+        dispatch({
+            type: GET_REPOS,
+            payload: userResult
+        })
+    }
 
     // Clear Users
     const clearUsers = () => dispatch({ type: CLEAR_USERS })
@@ -61,7 +72,8 @@ const GithubState = (props) => {
                 loading: state.loading,
                 searchUsers,
                 getSingleUser,
-                clearUsers
+                clearUsers,
+                getUserRepos
             }}
         >
             {props.children}
